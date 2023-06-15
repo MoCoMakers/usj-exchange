@@ -16,6 +16,13 @@
   </span>
 </div>
 
+<div style="display:flex; justify-content: space-around;">
+  <%= for image <- @images do %>
+    <img phx-click="send" phx-value-name="image<%= image %>.png" class="image is-128x128" src="<%= "/assets/images/image" <> Integer.to_string(image) <> ".png" %>" />
+  <% end %>
+</div>
+
+<%#
 <div class="file has-name is-boxed px-6 mt-4">
   <label class="file-label">
     <input class="file-input" type="file" name="resume">
@@ -31,9 +38,10 @@
     <span class="file-name">
       Screen Shot 2017-07-29 at 15.54.25.png
     </span>
-  %>
+  % >
   </label>
 </div>
+%>
 
 <h3 class="mt-4 mx-3 is-size-5 has-text-weight-bold">Your most used phrases</h3>
 <span class="mx-3">Tap what we could add to description</span>

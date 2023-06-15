@@ -1,3 +1,5 @@
+import HTTPoison
+
 defmodule TodoWeb.TodoLive do
   @moduledoc """
     Main live view of our TodoApp. Just allows adding, removing and checking off
@@ -9,8 +11,12 @@ defmodule TodoWeb.TodoLive do
 
   def mount(_args, _session, socket) do
     phrases = TodoApp.Todo.all_todos()
+    images = [1,2,3]
     TodoApp.Todo.subscribe()
-    {:ok, assign(socket, phrases: phrases, proposing: false)}
+    {:ok, assign(socket,
+      conn: Phoenix.ConnTest.build_conn(),
+      phrases: phrases,
+      images: images)}
   end
 
   @impl true
@@ -29,6 +35,16 @@ defmodule TodoWeb.TodoLive do
     # Desktop.Window.show_notification(TodoWindow, "Added todo: #{text}",
     #   callback: &notification_event/1
     # )
+    {:noreply, socket}
+  end
+
+  def handle_event("send", %{"name" => name}, socket) do
+    {:ok, image} = File.read Path.join(__DIR__, "priv/static/assets/images/" <> name)
+    blob = Base.encode64(image)
+    call = HTTPoison.post("http://18.224.170.25:5000/image/description", %{
+      image_name: name,
+      image_string: blob,
+    }, %{})
     {:noreply, socket}
   end
 

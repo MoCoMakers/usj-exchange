@@ -76,6 +76,10 @@ defmodule Todo.MixProject do
       {:plug_cowboy, "~> 2.6"},
       {:jason, "~> 1.4"},
 
+      # Poison
+      {:httpoison, "~> 2.1" },
+      {:poison, "~> 5.0" },
+
       # Assets
       {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
       {:dart_sass, "~> 0.5", runtime: Mix.env() == :dev},
