@@ -12,7 +12,9 @@ config :assembled,
 
 # Configures the endpoint
 config :assembled, AssembledWeb.Endpoint,
-  url: [host: "localhost"],
+  http: [ip: {127,0,0,1}, port: 0],
+  server: true,
+  # url: [host: "localhost"],
   render_errors: [
     formats: [html: AssembledWeb.ErrorHTML, json: AssembledWeb.ErrorJSON],
     layout: false

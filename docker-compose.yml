@@ -1,0 +1,9 @@
+services:
+  program:
+    build: .
+    command: ./run
+    ports:
+      - 4444:4000
+    env_file: .call
+    volumes:
+      - .:/program:z

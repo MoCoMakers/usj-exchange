@@ -17,9 +17,14 @@ defmodule Assembled.Application do
       # Start Finch
       {Finch, name: Assembled.Finch},
       # Start the Endpoint (http/https)
-      AssembledWeb.Endpoint
+      AssembledWeb.Endpoint,
       # Start a worker by calling: Assembled.Worker.start_link(arg)
       # {Assembled.Worker, arg}
+      { Desktop.Window,
+      [ app: :assembled,
+        id: AssembledScreen,
+        url: &AssembledWeb.Endpoint.url/0
+      ] }
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
