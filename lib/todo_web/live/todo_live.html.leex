@@ -1,5 +1,22 @@
-<div class="header">
-  <h2><%= gettext "My Todo List" %></h2>
+<div class="header is-size-3"
+     style="
+            margin-bottom: 0.6rem;
+            width: 100vw;
+            border-bottom: 2px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            ">
+  <h2 class="px-1" style="display: inline-block;">
+    <%= gettext "Description generation" %>
+  </h2>
+
+  <span class="icon has-text-dark m-3" style="float: right">
+    <ion-icon name="person-outline"></ion-icon>
+  </span>
+</div>
+
+<div>
   <form phx-submit="add">
     <input type="text" name="text" placeholder="<%= gettext "Add new todo item..." %>">
     <button type="submit">&#8617;</button>

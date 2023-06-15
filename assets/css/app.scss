@@ -1,6 +1,14 @@
 /* This file is for your main application css. */
 @use "../node_modules/nprogress/nprogress.css";
-@import "./todo.scss";
+@use "./bulma/bulma.sass";
+@import "./bulma/sass/utilities/derived-variables";
+
+main {
+  background: #f6f3ed;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+}
 
 /* LiveView specific classes for your customizations */
 .invalid-feedback {
