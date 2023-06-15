@@ -7,27 +7,51 @@
             justify-content: space-between;
             align-items: baseline;
             ">
-  <h2 class="px-1" style="display: inline-block;">
+  <h2 class="px-6" style="display: inline-block;">
     <%= gettext "Description generation" %>
   </h2>
 
-  <span class="icon has-text-dark m-3" style="float: right">
+  <span class="icon has-text-dark mx-6" style="float: right">
     <ion-icon name="person-outline"></ion-icon>
   </span>
 </div>
 
-<div>
-  <form phx-submit="add">
-    <input type="text" name="text" placeholder="<%= gettext "Add new todo item..." %>">
-    <button type="submit">&#8617;</button>
-  </form>
+<div class="file has-name is-boxed px-6 mt-4">
+  <label class="file-label">
+    <input class="file-input" type="file" name="resume">
+    <span class="file-cta">
+      <span class="file-icon">
+        <i class="fas fa-upload"></i>
+      </span>
+      <span class="file-label">
+        Upload an image…
+      </span>
+    </span>
+    <%#
+    <span class="file-name">
+      Screen Shot 2017-07-29 at 15.54.25.png
+    </span>
+  %>
+  </label>
 </div>
 
-<ul>
-  <%= for item <- @todos do %>
-  <li phx-click="toggle" phx-value-id="<%= item.id %>" class="<%= item.status %>"
+<h3 class="mt-4 mx-6 is-size-5 has-text-weight-bold">Your most used phrases</h3>
+<span class="mx-6">Tap what we could add to description</span>
+<ul class="mt-2 mx-6">
+  <%= for item <- @phrases do %>
+<li phx-click="toggle" phx-value-id="<%= item.id %>" class="<%= if item.status == "done", do: "is-success", else: "" %> button"
     ><%= item.text %>
-    <span class="close" phx-click="drop" phx-value-id="<%= item.id %>">&#215;</span>
+    <span class="close is-size-4 pl-2" phx-click="drop" phx-value-id="<%= item.id %>">&#215;</span>
     </li>
   <% end %>
 </ul>
+
+<div class="mx-6 mt-4">
+  <form phx-submit="add">
+    <label for="text">Add new phrase</label>
+    <div style="display: flex;">
+      <input type="text" class="input" style="display: inline-block" name="text" placeholder="<%= gettext "Add new todo item..." %>">
+      <button type="submit" class="button is-primary">&#8617;</button>
+    </div>
+  </form>
+</div>

@@ -8,15 +8,15 @@ defmodule TodoWeb.TodoLive do
   @impl true
 
   def mount(_args, _session, socket) do
-    todos = TodoApp.Todo.all_todos()
+    phrases = TodoApp.Todo.all_todos()
     TodoApp.Todo.subscribe()
-    {:ok, assign(socket, todos: todos)}
+    {:ok, assign(socket, phrases: phrases, proposing: false)}
   end
 
   @impl true
   def handle_info(:changed, socket) do
-    todos = TodoApp.Todo.all_todos()
-    {:noreply, assign(socket, todos: todos)}
+    phrases = TodoApp.Todo.all_todos()
+    {:noreply, assign(socket, phrases: phrases)}
   end
 
   @impl true
@@ -26,11 +26,9 @@ defmodule TodoWeb.TodoLive do
 
   def handle_event("add", %{"text" => text}, socket) do
     TodoApp.Todo.add_todo(text, "todo")
-
-    Desktop.Window.show_notification(TodoWindow, "Added todo: #{text}",
-      callback: &notification_event/1
-    )
-
+    # Desktop.Window.show_notification(TodoWindow, "Added todo: #{text}",
+    #   callback: &notification_event/1
+    # )
     {:noreply, socket}
   end
 

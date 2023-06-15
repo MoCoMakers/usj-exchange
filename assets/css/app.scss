@@ -1,7 +1,6 @@
 /* This file is for your main application css. */
 @use "../node_modules/nprogress/nprogress.css";
 @use "./bulma/bulma.sass";
-@import "./bulma/sass/utilities/derived-variables";
 
 main {
   background: #f6f3ed;
